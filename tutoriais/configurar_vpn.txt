@@ -1,0 +1,10 @@
+1 - Instalar o Pearl: sudo apt-get install sgt-puzzles libwww-perl
+  1.1 - Instalar o módulo LWP: sudo perl -MCPAN -e 'install Bundle::LWP'
+2 - clonar o repo da JVPN em sua pasta de preferência: git clone git@github.com:samm-git/jvpn.git
+3 - Configurar o projeto:
+  3.1 - abrir o arquivo jvpn.ini do projeto e alterar os valores das seguintes variáveis:
+      - host: vops.abril.com.br
+      - username: a[sua_chapa_sem-colchetes]
+      - realm: VPN_SSL_Tunnel
+4 - executar o arquivo jvpn.pl como sudo: sudo ./jvpn.pl
+5 - Colocar sua senha como token e zas
