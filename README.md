@@ -1,4 +1,4 @@
-bash_scripts
+Bash Scripts
 ============
 
 Meus scripts maus usados em instalações, configurações, e etc
