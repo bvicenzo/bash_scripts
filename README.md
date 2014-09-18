@@ -10,12 +10,12 @@ Instalar o git para clonar este repo, copiar os dotfiles para o home, e executar
 clonar o repo
 Entrar na seguinte pasta: instalacoes
 e rodar o seguinte comando:
-```./instalar_tudo.sh```
+./instalar_tudo.sh
 
 colocar este fonte no ~/.bashrc logo acima da parte que carrega o arquivo ~/.bash_aliases
-```if [ -f ~/.bash_environment ]; then```
-  ```. ~/.bash_environment```
-```fi```
+if [ -f ~/.bash_environment ]; then
+  . ~/.bash_environment
+fi
 
 ## Programas instalados
   * Imagemagick
