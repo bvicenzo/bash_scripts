@@ -9,7 +9,7 @@ Instalar o git para clonar este repo, copiar os dotfiles para o home, e executar
 
 Clonar o repo, entrar na seguinte pasta instalacoes e rodar o seguinte comando.
 
-```./instalar_tudo.sh```
+./instalar_tudo.sh
 
 colocar este fonte no **~/.bashrc** logo acima da parte que carrega o arquivo **~/.bash_aliases**
 
