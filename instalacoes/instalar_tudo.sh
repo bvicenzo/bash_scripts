@@ -13,3 +13,5 @@ echo "Instalando coisas básicas para ambiente"
 ./java.sh
 ./copiar_dot_files.sh
 ./skype.sh
+./virtualbox.sh
+./outros_e_dependencias.sh
