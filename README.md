@@ -1,7 +1,7 @@
 Bash Scripts
 ============
 
-Meus scripts maus usados em instalações, configurações, e etc
+Meus scripts mais usados em instalações, configurações, e etc
 
 Instalar o git para clonar este repo, copiar os dotfiles para o home, e executar os scripts de instalação
 
