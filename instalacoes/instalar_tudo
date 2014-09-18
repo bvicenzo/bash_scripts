@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Instalando coisas básicas para ambiente"
+
+./imagemagick
+./memcache
+./mongodb
+./mysql
+./redis
+./vim
+./rvm
+./copiar_dot_files

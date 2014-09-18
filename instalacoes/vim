@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "instalando o Vim..."
+sudo apt-get install "vim vim-gnome exuberant-ctags ncurses-term ack-grep"
+
+echo "Configurando Vim..."
+git clone "git@github.com:bvicenzo/dotvim.git" ~/.vim
+
+wget "https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf"
+wget "https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf"
+
+if [ ! -d "~/.fonts/" ]; then
+ mkdir "~/.fonts"
+fi
+
+if [ ! -d "~/.config/fontconfig/conf.d/" ]; then
+ mkdir -p "~/.config/fontconfig/conf.d/"
+fi
+
+mv "PowerlineSymbols.otf" "~/.fonts/"
+mv "10-powerline-symbols.conf" "~/.config/fontconfig/conf.d/"
