@@ -1,0 +1,17 @@
+[user]
+	name = Bruno Vicenzo
+	email = bruno.nascimento@abril.com.br
+[color]
+	ui = auto
+[alias]
+	cm = commit
+	co = checkout
+	st = status
+	pl = pull
+	ps = push
+	plr = pull --rebase
+	df = diff
+[push]
+	default = simple
+[core]
+	excludesfile = /home/bruno/.gitignore_global
