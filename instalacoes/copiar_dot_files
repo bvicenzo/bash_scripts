@@ -8,5 +8,6 @@ cp "../dotfiles/gitconfig" "~/.gitconfig"
 cp "../dotfiles/gitignore_global" "~/.gitignore_global"
 cp "../dotfiles/rspec" "~/.rspec"
 cp "../dotfiles/tmux.conf" "~/.tmux.conf"
+cp -r "../dotfiles/terminator/" "~/.config/"
 
 source "~/.bashrc"
