@@ -9,4 +9,6 @@ echo "Instalando coisas básicas para ambiente"
 ./redis
 ./vim
 ./rvm
+./vpn
+./java
 ./copiar_dot_files
