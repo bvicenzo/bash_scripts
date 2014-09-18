@@ -12,3 +12,4 @@ echo "Instalando coisas básicas para ambiente"
 ./vpn.sh
 ./java.sh
 ./copiar_dot_files.sh
+./skype.sh
