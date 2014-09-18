@@ -7,15 +7,16 @@ Instalar o git para clonar este repo, copiar os dotfiles para o home, e executar
 
 ```sudo apt-get install git git-svn gitk ssh libssh-dev gitk tig```
 
-clonar o repo
-Entrar na seguinte pasta: instalacoes
-e rodar o seguinte comando:
-./instalar_tudo.sh
+Clonar o repo, entrar na seguinte pasta instalacoes e rodar o seguinte comando.
 
-colocar este fonte no ~/.bashrc logo acima da parte que carrega o arquivo ~/.bash_aliases
+```./instalar_tudo.sh```
+
+colocar este fonte no **~/.bashrc** logo acima da parte que carrega o arquivo **~/.bash_aliases**
+```
 if [ -f ~/.bash_environment ]; then
   . ~/.bash_environment
 fi
+```
 
 ## Programas instalados
   * Imagemagick
