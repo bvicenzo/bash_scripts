@@ -29,4 +29,5 @@ fi
   * RVM
   * Skype
   * Vim (Com o Chickivim)
+  * Virtualbox
   * VPN (com jVPN)
