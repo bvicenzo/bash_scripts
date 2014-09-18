@@ -12,6 +12,7 @@ Clonar o repo, entrar na seguinte pasta instalacoes e rodar o seguinte comando.
 ```./instalar_tudo.sh```
 
 colocar este fonte no **~/.bashrc** logo acima da parte que carrega o arquivo **~/.bash_aliases**
+
 ```
 if [ -f ~/.bash_environment ]; then
   . ~/.bash_environment
