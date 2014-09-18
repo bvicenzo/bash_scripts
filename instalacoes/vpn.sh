@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "instalando o VPN..."
-sudo apt-get install "sgt-puzzles libwww-perl"
+sudo apt-get install sgt-puzzles libwww-perl
 sudo perl -MCPAN -e "install Bundle::LWP"
 
 if [ ! -d ~/outros_programas/ ]; then
