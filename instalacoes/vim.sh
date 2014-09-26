@@ -14,6 +14,8 @@ if [ ! -d ~/.fonts/ ]; then
  fi
 fi
 
+fc-cache -vf ~/.fonts/
+
 if [ ! -d ~/.config/fontconfig/conf.d/ ]; then
  mkdir -p ~/.config/fontconfig/conf.d/
  if [ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]; then
