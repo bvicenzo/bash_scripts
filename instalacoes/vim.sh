@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "instalando o Vim..."
-sudo apt-get install vim vim-gnome exuberant-ctags ncurses-term ack-grep
+sudo apt-get install vim vim-gnome exuberant-ctags ncurses-term ack-grep libjson-xs-perl
 
 echo "Configurando Vim..."
 git clone "git@github.com:bvicenzo/dotvim.git" ~/.vim
