@@ -9,10 +9,4 @@ alias pgrep="ack-grep -i --ignore-dir=features/cassettes/ --ignore-dir=spec/cass
 # VPN
 alias vpn="cd $OTHER_PROGRAMS_HOME/jvpn && sudo ./jvpn.pl"
 
-# GenyMotion
-alias genymotion="cd $OTHER_PROGRAMS_HOME/genymotion && ./genymotion"
-
 # Projetos
-
-alias veja="cd $VEJA_HOME"
-alias alx="cd $ALX_HOME"

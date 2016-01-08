@@ -1,8 +1,6 @@
 #!/bin/bash
 
 #Projects paths
-export VEJA_HOME="~/projetos/abril/veja/"
-export ALX_HOME="~/projetos/abril/alexandria/"
 
 #Other Programs PATH
 export OTHER_PROGRAMS_HOME="~/outros_programas"
