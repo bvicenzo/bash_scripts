@@ -1,0 +1,17 @@
+#!/bin/bash 
+# Removel all local branchs whitch there is no link with remote repository.
+# Take care! It can remove branchs you have created but yet haven't linked with a remote branch.
+
+function clear_untracked_branchs {
+  if [ -d "$(pwd)/.git" ]; then
+    git pull
+    git remote update origin --prune
+    git branch | grep -v 'master' | grep -v '*' | sort | while read -r branch ; do
+      if [ !$(git branch -r --list *$branch) ] ; then
+        git branch -D $branch
+      fi
+    done
+  else
+    echo "You must be inside a git repository directory to clean the untracked branchs..."
+  fi
+}

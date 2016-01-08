@@ -4,6 +4,7 @@ echo "Copiando arquivos de configuração"
 
 cp ../dotfiles/bash_aliases ~/.bash_aliases
 cp ../dotfiles/bash_environment ~/.bash_environment
+cp ../dotfiles/bash_functions ~/.bash_functions
 cp ../dotfiles/gitconfig ~/.gitconfig
 cp ../dotfiles/gitignore_global ~/.gitignore_global
 cp ../dotfiles/rspec ~/.rspec
@@ -21,5 +22,8 @@ cp -r ../dotfiles/terminator/ ~/.config/
     #. ~/.bash_environment
 #fi
 
+#if [ -f ~/.bash_functions ]; then
+    #. ~/.bash_functions
+#fi
 
 source ~/.bashrc
