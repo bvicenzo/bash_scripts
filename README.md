@@ -17,6 +17,10 @@ colocar este fonte no **~/.bashrc** logo acima da parte que carrega o arquivo **
 if [ -f ~/.bash_environment ]; then
   . ~/.bash_environment
 fi
+
+if [ -f ~/.bash_functions ]; then
+  . ~/.bash_functions
+fi
 ```
 
 ## Programas instalados
