@@ -1,9 +1,10 @@
 [user]
-	name = Seu Nome Global
-	email = seu@email.global
+	name = Bruno Vicenzo
+        email = bruno@vicenzo.me
 [color]
 	ui = auto
 [alias]
+	br = branch
 	cm = commit
 	co = checkout
 	st = status
@@ -11,7 +12,15 @@
 	ps = push
 	plr = pull --rebase
 	df = diff
+	dfc = diff --cached
+	dfw = diff --word-diff=plain
+	clsorig = remote update origin --prune
+        mg = merge
 [push]
-	default = simple
+        default = simple
 [core]
-	excludesfile = /home/bruno/.gitignore_global
+	excludesfile = ~/.gitignore_global
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

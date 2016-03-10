@@ -3,7 +3,7 @@
 alias gemset='rvm gemset'
 
 #Alias para o ack-grep
-alias pgrep="ack-grep -i --ignore-dir=features/cassettes/ --ignore-dir=spec/cassettes/ --ignore-dir=spec/reports/ --ignore-dir=coverage/ --ignore-dir=spec/fixtures/ --ignore-dir=log/"
+alias pgrep="ag-grep -i --ignore-dir=features/cassettes/ --ignore-dir=spec/cassettes/ --ignore-dir=spec/reports/ --ignore-dir=coverage/ --ignore-dir=spec/fixtures/ --ignore-dir=log/"
 
 # Alias para subir Programas
 # VPN
