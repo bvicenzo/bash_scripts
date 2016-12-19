@@ -7,11 +7,15 @@ function clear_untracked_branchs {
     git pull
     git remote update origin --prune
     git branch | grep -v 'master' | grep -v '*' | sort | while read -r branch ; do
-      if [ !$(git branch -r --list *$branch) ] ; then
+      if [ -z "$(git branch -r --list *$branch)" ] ; then
         git branch -D $branch
       fi
     done
   else
     echo "You must be inside a git repository directory to clean the untracked branchs..."
   fi
+}
+
+function clear_rabbitmq_queues {
+  rabbitmqadmin -f tsv -q list queues name | while read queue; do rabbitmqadmin -q delete queue name=${queue}; done
 }
