@@ -2,6 +2,24 @@
 # Removel all local branchs whitch there is no link with remote repository.
 # Take care! It can remove branchs you have created but yet haven't linked with a remote branch.
 
+
+# Relplace values on a project
+function replace {
+  local from=$1
+  local to=$2
+
+  ag -li $from | xargs -I@ sed -i '' 's/'"$from"'/'"$to"'/g' @
+}
+
+function all_tests {
+  bundle && prepare_database_to_tests &&
+  if [ -d "$(pwd)/engines/" ]; then
+    rspec --format=progress && rspec engines --format=progress
+  else
+    rspec --format=progress
+  fi
+}
+
 function clear_untracked_branchs {
   if [ -d "$(pwd)/.git" ]; then
     git pull
@@ -18,4 +36,118 @@ function clear_untracked_branchs {
 
 function clear_rabbitmq_queues {
   rabbitmqadmin -f tsv -q list queues name | while read queue; do rabbitmqadmin -q delete queue name=${queue}; done
+}
+
+function update_git_submodules {
+  git submodule foreach git pull origin master
+}
+
+function load_venv {
+  local venv_dir="$(pwd)/venv"
+  if [ -d $venv_dir ]; then
+    source "$venv_dir/bin/activate"
+  fi
+}
+
+function update_bundler {
+  local current_ruby_version="$(rvm current)"
+
+  for ruby_version in $( rvm list strings ) ; do
+    rvm use $ruby_version
+    local current_gemset="$(rvm gemset name)"
+    rvm gemset use global
+    gem update --system
+    gem update bundler
+    if [[ "$current_gemset" =~ "/*" ]]; then
+      rvm gemset use $current_gemset
+    fi
+  done
+
+  rvm use $current_ruby_version
+}
+
+function update_my_branches {
+  if [ -d "$(pwd)/.git" ]; then
+    if [[ -z $(git status -s) ]]; then
+      local current_branch="$(git symbolic-ref -q HEAD --short)"
+      for branch in $(git for-each-ref --format='%(refname:short)' refs/heads/*) ; do 
+        git checkout $branch 
+        git pull || return; 
+      done
+
+      git checkout $current_branch
+    else
+      echo "This branch has uncommited changes. Please, commit, checkout or stash this changes before."
+    fi
+  else
+    echo "You must be inside a git repository directory to clean the untracked branchs..."
+  fi
+}
+
+function clear_logs_and_tmps {
+  local current_dir="$(pwd)"
+  for repo in $(ls -d */); do 
+    cd $repo
+    if [ -f "$(pwd)/bin/rails" ]; then
+      echo "Clearing $repo"
+      bundle && rake tmp:clear log:clear
+    fi
+    cd $current_dir
+  done
+
+  cd $current_dir
+}
+
+function update_repos {
+  local current_dir="$(pwd)"
+  for repo in $(ls -d */); do 
+    echo "Updating $repo"
+    cd $repo
+
+    if [[ -z $(git status -s) ]]; then
+      clear_untracked_branchs
+    fi
+
+    cd $current_dir
+  done
+
+  cd $current_dir
+}
+
+function prepare_database_to_tests {
+  if [ -f "$(pwd)/bin/rake" -a  -n "$(rake -AT db:test:prepare)" ]; then
+    rake db:test:prepare
+  fi
+}
+
+function start_containers {
+  declare -a containers=("postgres:9.5")
+  for container in "${containers[@]}"; do
+    start_container $container
+  done
+}
+
+function start_container {
+  local container=$1
+  if [ $(container_is_running $container) != "true" ]; then
+    docker start "$(get_container_id $container)"
+  else
+    echo "Container $container is already running"
+  fi
+}
+
+function get_container_id {
+  local container=$1
+  echo "$(get_container_property $container 0)"
+}
+
+function container_is_running {
+  local container=$1
+  ruby -e "puts '$(get_container_property $container 4)'.start_with?('Up')"
+}
+
+function get_container_property {
+  local container=$1
+  local property_position=$2
+  docker ps -a | grep "$container" | ruby -e "print ARGF.read.split(/\s{2}\s{1,}/)[$property_position]"
 }
