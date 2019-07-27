@@ -1,3 +1,7 @@
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
 if [ -f ~/.profile_environment ]; then
   . ~/.profile_environment
 fi
@@ -9,11 +13,3 @@ fi
 if [ -f ~/.profile_aliases ]; then
   . ~/.profile_aliases
 fi
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
