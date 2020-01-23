@@ -13,3 +13,20 @@ fi
 if [ -f ~/.profile_aliases ]; then
   . ~/.profile_aliases
 fi
+
+if [ -f ~/.company_profile_environment ]; then
+  . ~/.company_profile_environment
+fi
+
+if [ -f ~/.company_profile_functions ]; then
+  . ~/.company_profile_functions
+fi
+
+if [ -f ~/.profile_aliases ]; then
+  . ~/.company_profile_aliases
+fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

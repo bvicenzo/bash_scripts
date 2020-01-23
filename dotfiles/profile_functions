@@ -14,9 +14,9 @@ function replace {
 function all_tests {
   bundle && prepare_database_to_tests &&
   if [ -d "$(pwd)/engines/" ]; then
-    rspec --format=progress && rspec engines --format=progress
+    rspec -fp --order=defined && rspec engines --format=progress
   else
-    rspec --format=progress
+    rspec -fp --order=defined
   fi
 }
 
