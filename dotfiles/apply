@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+ROOT_PATH="$HOME/bash_scripts/dotfiles"
+for dot_env_file_name in "gitignore_global" "gitconfig" "rspec" ; do
+  dot_env_file_uri="$HOME/.$dot_env_file_name"
+  if [ ! -f "$dot_env_file_uri" ]; then
+    echo "Creating symbolic link to .$dot_env_file_name..."
+    ln -s "bash_scripts/dotfiles/$dot_env_file_name" "$HOME/.$dot_env_file_name"
+  fi
+done

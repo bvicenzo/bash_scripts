@@ -1,36 +1,39 @@
 #!/usr/bin/env bash
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
 ROOT_PATH="$HOME/bash_scripts/dotfiles"
 
-if [ -e "$ROOT_PATH/profile_environment" ]; then
-  . "$ROOT_PATH/profile_environment"
+if [ -n "$BASH_VERSION" ]; then
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
+
+  if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+    # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+    export PATH="$PATH:$HOME/.rvm/bin"
+
+    source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+  fi
+
+  if [ -e "$ROOT_PATH/bash_environment" ]; then
+    . "$ROOT_PATH/bash_environment"
+  fi
+elif [ -n "$ZSH_VERSION" ]; then
+  if [ -e "$ROOT_PATH/zsh_environment" ]; then
+    . "$ROOT_PATH/zsh_environment"
+  fi
+else
+   # assume something else
+   echo "Unknown Shell: $SHELL"
 fi
 
-if [ -f "$ROOT_PATH/profile_functions" ]; then
-  . "$ROOT_PATH/profile_functions"
-fi
+for profile_file_name in "profile_functions" "profile_aliases" "company_profile_environment" "company_profile_functions" "company_profile_aliases" ; do
+  if [ -f "$ROOT_PATH/$profile_file_name" ]; then
+    . "$ROOT_PATH/$profile_file_name"
+  fi
+done
 
-if [ -f "$ROOT_PATH/profile_aliases" ]; then
-  . "$ROOT_PATH/profile_aliases"
-fi
-
-if [ -f "$HOME/company_profile_environment" ]; then
-  . "$HOME/company_profile_environment"
-fi
-
-if [ -f "$HOME/company_profile_functions" ]; then
-  . "$HOME/company_profile_functions"
-fi
-
-if [ -f "$HOME/company_profile_aliases" ]; then
-  . "$HOME/company_profile_aliases"
-fi
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+for profile_file_name in "company_profile_environment" "company_profile_functions" "company_profile_aliases" ; do
+  if [ -f "$HOME/.$profile_file_name" ]; then
+    . "$HOME/.$profile_file_name"
+  fi
+done
