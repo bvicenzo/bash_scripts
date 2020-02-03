@@ -1,6 +1,5 @@
 #!/bin/bash
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH=$PATH:/usr/local/sbin # Add directory to run RabbitMQ
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -13,10 +12,16 @@ export EDITOR=vim
 
 # Bash line config
 ESC="\033" # This is the escape sequence
-NO_COLOR="$ESC[0m"
-IRED="$ESC[1;31m" # ANSI color code for intense/bold red
-IGRN="$ESC[1;32m" # ANSI color code for intense/bold green
-IYEL="$ESC[1;33m" # ANSI color code for intense/bold yellow
+#NO_COLOR="$ESC[0m"
+#IRED="$ESC[1;31m" # ANSI color code for intense/bold red
+#IGRN="$ESC[1;32m" # ANSI color code for intense/bold green
+#IYEL="$ESC[1;33m" # ANSI color code for intense/bold yellow
+
+NO_COLOR="%F{256}"
+IRED="%F{160}" # ANSI color code for intense/bold red
+IGRN="%F{82}" # ANSI color code for intense/bold green
+IYEL="%F{226}" # ANSI color code for intense/bold yellow
+NEW_LINE=$'\n'
 
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
@@ -39,7 +44,8 @@ function parse_git_branch {
 #export PS1="\$(rvm_version)\W \$(parse_git_branch)\$ " # Without the colors
 
 # I had to put the \[ and \] down here, as opposed to $IRED, to avoid wrapping funkiness.
-export PS1="\[$IRED\]$USER: \$(rvm_version)\[$NO_COLOR\]\W\[$IGRN\]\$(parse_git_branch)\n \[$IYEL\]⊗ \[$NO_COLOR\]"
+#export PS1="$IRED$USER: $(rvm_version)$IGRN$(parse_git_branch)
+#$IYEL⊗ $NO_COLOR"
 
 ## RVM config
 

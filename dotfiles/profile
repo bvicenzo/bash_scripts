@@ -1,29 +1,33 @@
+#!/usr/bin/env bash
+
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-if [ -f ~/.profile_environment ]; then
-  . ~/.profile_environment
+ROOT_PATH="$HOME/bash_scripts/dotfiles"
+
+if [ -e "$ROOT_PATH/profile_environment" ]; then
+  . "$ROOT_PATH/profile_environment"
 fi
 
-if [ -f ~/.profile_functions ]; then
-  . ~/.profile_functions
+if [ -f "$ROOT_PATH/profile_functions" ]; then
+  . "$ROOT_PATH/profile_functions"
 fi
 
-if [ -f ~/.profile_aliases ]; then
-  . ~/.profile_aliases
+if [ -f "$ROOT_PATH/profile_aliases" ]; then
+  . "$ROOT_PATH/profile_aliases"
 fi
 
-if [ -f ~/.company_profile_environment ]; then
-  . ~/.company_profile_environment
+if [ -f "$HOME/company_profile_environment" ]; then
+  . "$HOME/company_profile_environment"
 fi
 
-if [ -f ~/.company_profile_functions ]; then
-  . ~/.company_profile_functions
+if [ -f "$HOME/company_profile_functions" ]; then
+  . "$HOME/company_profile_functions"
 fi
 
-if [ -f ~/.profile_aliases ]; then
-  . ~/.company_profile_aliases
+if [ -f "$HOME/company_profile_aliases" ]; then
+  . "$HOME/company_profile_aliases"
 fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.

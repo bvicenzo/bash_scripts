@@ -1,3 +1,5 @@
 .ruby-gemset
 .ruby-version
+.env*
+!.env.example
 dump.rdb
