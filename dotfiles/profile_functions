@@ -25,7 +25,7 @@ function clear_untracked_branchs {
     git pull
     git remote update origin --prune
     git branch | grep -v 'master' | grep -v '*' | sort | while read -r branch ; do
-      if [ -z "$(git branch -r --list *$branch)" ] ; then
+      if [ -z "$(git branch -r --list origin/$branch)" ] ; then
         git branch -D $branch
       fi
     done
