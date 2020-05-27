@@ -1,5 +1,6 @@
 .ruby-gemset
 .ruby-version
+.rspec-local
 .env*
 !.env.example
 dump.rdb
