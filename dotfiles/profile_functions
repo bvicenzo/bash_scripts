@@ -151,3 +151,17 @@ function get_container_property {
   local property_position=$2
   docker ps -a | grep "$container" | ruby -e "print ARGF.read.split(/\s{2}\s{1,}/)[$property_position]"
 }
+
+# Intent JSONs
+# Receive a file path or a JSON string.
+# Usage 1: json_indent ~/bla2.json
+# Usage 2: json_indent "{\"a\": 1, \"b\": 2}"
+function json_indent {
+  if [ -f "$1" ]; then
+    local json="$(cat $1)"
+  else
+    local json=$1
+  fi
+  
+  ruby -rjson -e "puts JSON.pretty_generate(JSON.parse('$json'))"
+}
