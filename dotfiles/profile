@@ -26,7 +26,7 @@ else
    echo "Unknown Shell: $SHELL"
 fi
 
-for profile_file_name in "symbolic_links" "profile_functions" "profile_aliases" "company_profile_environment" "company_profile_functions" "company_profile_aliases" ; do
+for profile_file_name in "symbolic_links" "profile_environment" "profile_functions" "profile_aliases" "company_profile_environment" "company_profile_functions" "company_profile_aliases" ; do
   if [ -f "$ROOT_PATH/$profile_file_name" ]; then
     . "$ROOT_PATH/$profile_file_name"
   fi
