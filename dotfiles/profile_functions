@@ -166,6 +166,10 @@ function json_indent {
   ruby -rjson -e "puts JSON.pretty_generate(JSON.parse('$json'))"
 }
 
+function json_view {
+  json_indent "$1" | bat -l json --theme "TwoDark" --style="plain"
+}
+
 function fuzzy_open {
   vim $(fzf --height 40%)
 }
