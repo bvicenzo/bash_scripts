@@ -3,6 +3,6 @@
 alias gemset='rvm gemset'
 
 #Alias para o ack-grep
-alias pgrep="ag -i --ignore-dir=features/cassettes/ --ignore-dir=spec/cassettes/ --ignore-dir=spec/reports/ --ignore-dir=coverage/ --ignore-dir=spec/fixtures/ --ignore-dir=log/ --ignore-dir=tmp/ --ignore-dir=vendor/ --ignore-dir=app/assets/images/"
+alias pgrep="ag -i --ignore-dir=features/cassettes/ --ignore-dir=spec/cassettes/ --ignore-dir=spec/reports/ --ignore-dir=coverage/ --ignore-dir=spec/fixtures/ --ignore-dir=log/ --ignore-dir=tmp/ --ignore-dir=vendor/ --ignore-dir=app/assets/images/ --ignore-dir=node_modules/ --ignore-dir=src/test/scala/fixtures/"
 
 alias fo='fuzzy_open'
