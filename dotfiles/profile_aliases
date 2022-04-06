@@ -3,6 +3,14 @@
 alias gemset='rvm gemset'
 
 #Alias para o ack-grep
-alias pgrep="ag -i --ignore-dir=features/cassettes/ --ignore-dir=spec/cassettes/ --ignore-dir=spec/reports/ --ignore-dir=coverage/ --ignore-dir=spec/fixtures/ --ignore-dir=log/ --ignore-dir=tmp/ --ignore-dir=vendor/ --ignore-dir=app/assets/images/ --ignore-dir=node_modules/ --ignore-dir=src/test/scala/fixtures/"
+alias pgrep="ag -i --ignore-dir=features/cassettes/ --ignore-dir=spec/cassettes/ --ignore-dir=spec/reports/ --ignore-dir=coverage/ --ignore-dir=spec/fixtures/ --ignore-dir=log/ --ignore-dir=tmp/ --ignore-dir=vendor/ --ignore-dir=app/assets/images/ --ignore-dir=app/frontend/images/ --ignore-dir=node_modules/ --ignore-dir=src/test/scala/fixtures/"
+alias rbf="ag -G '.*\.(rb|erb|arb)'"
 
 alias fo='fuzzy_open'
+
+# Hard clear terminal screen
+
+alias hc="clear && printf '\e[3J'"
+
+# Source: https://makandracards.com/makandra/25477-rbenv-how-to-update-list-of-available-ruby-versions-on-linux
+alias update_rbenv_rubies_list="git -C ~/.rbenv/plugins/ruby-build pull"
