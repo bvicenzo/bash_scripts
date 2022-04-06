@@ -171,5 +171,13 @@ function json_view {
 }
 
 function fuzzy_open {
-  vim $(fzf --height 40%)
+  if [ $(type nvim 2>/dev/null | wc -l) = 1 ]; then 
+    nvim $(fzf --height 40%)
+  else 
+    vim $(fzf --height 40%)
+  fi
+}
+
+function ccat {
+  bat $1 --theme "TwoDark" --style="plain"
 }
