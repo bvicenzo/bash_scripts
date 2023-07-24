@@ -5,3 +5,4 @@
 !.env.example
 dump.rdb
 .DS_Store
+tags
