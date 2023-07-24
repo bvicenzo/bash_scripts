@@ -8,7 +8,11 @@ function replace {
   local from=$1
   local to=$2
 
-  ag -li $from | xargs -I@ sed -i '' 's/'"$from"'/'"$to"'/g' @
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    ag -li $from | xargs -I@ sed -i '' 's/'"$from"'/'"$to"'/g' @
+  else
+    ag -li $from | xargs -I@ sed -i 's/'"$from"'/'"$to"'/g' @
+  fi
 }
 
 function all_tests {
