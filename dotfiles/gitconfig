@@ -26,3 +26,5 @@
 	required = true
 [pull]
 	ff = only
+[init]
+	defaultBranch = master
