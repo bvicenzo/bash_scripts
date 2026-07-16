@@ -9,9 +9,9 @@ function replace {
   local to=$2
 
   if [[ "$OSTYPE" == "darwin"* ]]; then
-    ag -li $from | xargs -I@ sed -i '' 's/'"$from"'/'"$to"'/g' @
+    rg -li $from | xargs -I@ sed -i '' 's/'"$from"'/'"$to"'/g' @
   else
-    ag -li $from | xargs -I@ sed -i 's/'"$from"'/'"$to"'/g' @
+    rg -li $from | xargs -I@ sed -i 's/'"$from"'/'"$to"'/g' @
   fi
 }
 
@@ -24,13 +24,54 @@ function all_tests {
   fi
 }
 
+# clear_untracked_branchs
+#
+# Removes local branches whose remote counterpart (origin/<branch>) no longer
+# exists — typically branches from PRs that were already merged and deleted on
+# the remote.
+#
+# Step by step:
+#   1. Checks whether the current directory is inside a git repository;
+#      otherwise, prints a message and exits.
+#   2. `git pull` updates the current branch from the remote.
+#   3. `git remote update origin --prune` syncs origin's refs and drops local
+#      references to remote branches that were already deleted (origin/*).
+#   4. Resolves the repository's default branch dynamically (main, master, or
+#      whatever origin/HEAD points to) so both "main" and "master" repos work.
+#   5. Iterates over every local branch (refs/heads) and, for each one:
+#        - Skips the default branch and the currently checked-out branch.
+#        - If there is no matching remote branch origin/<branch>, deletes the
+#          local branch with `git branch -D`.
+#
+# Notes:
+#   - Never touches the default branch nor the current branch.
+#   - Uses `git for-each-ref` (instead of `git branch | grep`) to avoid the
+#     current-branch "*" marker and any grep-implementation quirks.
 function clear_untracked_branchs {
-  if [ -d "$(pwd)/.git" ]; then
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
     git pull
     git remote update origin --prune
-    git branch | grep -v 'master' | grep -v '*' | sort | while read -r branch ; do
+
+    local current_branch default_branch
+    current_branch="$(git symbolic-ref --short -q HEAD)"
+
+    # Resolve the default branch from origin/HEAD; fall back to master/main.
+    default_branch="$(git symbolic-ref --short -q refs/remotes/origin/HEAD)"
+    default_branch="${default_branch#origin/}"
+    if [ -z "$default_branch" ]; then
+      if git show-ref --verify --quiet refs/heads/main; then
+        default_branch="main"
+      else
+        default_branch="master"
+      fi
+    fi
+
+    git for-each-ref --format='%(refname:short)' refs/heads/ | while read -r branch ; do
+      if [ "$branch" = "$default_branch" ] || [ "$branch" = "$current_branch" ] ; then
+        continue
+      fi
       if [ -z "$(git branch -r --list origin/$branch)" ] ; then
-        git branch -D $branch
+        git branch -D "$branch"
       fi
     done
   else
