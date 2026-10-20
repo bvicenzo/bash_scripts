@@ -1,14 +1,13 @@
 #!/bin/bash
 
-export PATH=$PATH:/usr/local/sbin # Add directory to run RabbitMQ
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export TERM=xterm-256color
+# TERM is not forced here: the terminal emulator knows best (kitty, ghostty, alacritty...)
 
-# Default Editor
-export EDITOR=vim
+# Default Editor (keeps the one already defined by the system, e.g. Omarchy's nvim)
+export EDITOR="${EDITOR:-vim}"
 
 # Bash line config
 ESC="\033" # This is the escape sequence
@@ -50,4 +49,3 @@ function parse_git_branch {
 ## RVM config
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-export PATH="/usr/local/opt/sbt@0.13/bin:$PATH"

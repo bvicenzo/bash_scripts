@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 
-ROOT_PATH="$HOME/bash_scripts/dotfiles"
+# Resolve the dotfiles directory from this file's own location, so the repository
+# can live anywhere (e.g. ~/.config/bash_scripts). BASH_SCRIPTS_PATH overrides it.
+if [ -n "$BASH_SCRIPTS_PATH" ]; then
+  ROOT_PATH="$BASH_SCRIPTS_PATH/dotfiles"
+elif [ -n "$BASH_VERSION" ]; then
+  ROOT_PATH="$(builtin cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+elif [ -n "$ZSH_VERSION" ]; then
+  ROOT_PATH="$(builtin cd -- "$(dirname -- "${(%):-%x}")" && pwd)"
+fi
 
 if [ -n "$BASH_VERSION" ]; then
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+  if command -v brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+    . "$(brew --prefix)/etc/bash_completion"
   fi
 
   if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
@@ -26,7 +34,8 @@ else
    echo "Unknown Shell: $SHELL"
 fi
 
-for profile_file_name in "symbolic_links" "profile_environment" "profile_functions" "profile_aliases" "company_profile_environment" "company_profile_functions" "company_profile_aliases" ; do
+# Symbolic links are no longer created here, on every new shell: run install.sh once instead.
+for profile_file_name in "profile_environment" "profile_functions" "profile_aliases" "company_profile_environment" "company_profile_functions" "company_profile_aliases" ; do
   if [ -f "$ROOT_PATH/$profile_file_name" ]; then
     . "$ROOT_PATH/$profile_file_name"
   fi
