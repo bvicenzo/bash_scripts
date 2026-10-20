@@ -4,7 +4,7 @@ alias gemset='rvm gemset'
 
 # Project search with ripgrep, skipping fixtures, cassettes, logs and dependencies.
 # (It used to be called pgrep, which shadowed the system's process grep.)
-alias sgrep="rg -i -g '!features/cassettes/' -g '!spec/cassettes/' -g '!spec/reports/' -g '!coverage/' -g '!spec/fixtures/' -g '!log/' -g '!tmp/' -g '!vendor/' -g '!app/assets/images/' -g '!app/frontend/images/' -g '!node_modules/' -g '!src/test/scala/fixtures/'"
+alias sgrep="rg -i -g '!features/cassettes/' -g '!spec/cassettes/' -g '!spec/reports/' -g '!coverage/' -g '!spec/fixtures/' -g '!log/' -g '!tmp/' -g '!vendor/' -g '!app/assets/images/' -g '!app/frontend/images/' -g '!node_modules/'"
 alias rbf="rg -g '*.{rb,erb,arb}'"
 alias jsof="rg -g '*.js'"
 alias jsf="rg -g '*.{js,json,jbuilder}'"

@@ -79,10 +79,6 @@ function clear_untracked_branchs {
   fi
 }
 
-function clear_rabbitmq_queues {
-  rabbitmqadmin -f tsv -q list queues name | while read queue; do rabbitmqadmin -q delete queue name=${queue}; done
-}
-
 function update_git_submodules {
   git submodule foreach git pull origin master
 }

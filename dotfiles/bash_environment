@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  export PATH=$PATH:/usr/local/sbin # Add directory to run RabbitMQ
-fi
-
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -53,6 +49,3 @@ function parse_git_branch {
 ## RVM config
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  export PATH="/usr/local/opt/sbt@0.13/bin:$PATH"
-fi
