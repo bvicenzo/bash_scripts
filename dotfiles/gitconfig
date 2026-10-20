@@ -1,6 +1,6 @@
-[user]
-	name = Bruno Vicenzo
-        email = bruno@vicenzo.me
+# Shared git settings. install.sh includes this file from the machine's global
+# config, where user.name and user.email live (each machine has its own identity).
+# The global ignore file is ~/.config/git/ignore, git's default location.
 [color]
 	ui = auto
 [alias]
@@ -15,16 +15,10 @@
 	dfc = diff --cached
 	dfw = diff --word-diff=plain
 	clsorig = remote update origin --prune
-        mg = merge
+	mg = merge
 [push]
-        default = simple
-[core]
-	excludesfile = ~/.gitignore_global
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+	default = simple
 [pull]
-	ff = only
+	rebase = true
 [init]
 	defaultBranch = master
